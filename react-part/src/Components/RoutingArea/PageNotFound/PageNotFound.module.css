@@ -1,0 +1,7 @@
+.PageNotFound > a > img {
+	width: 350px;
+    border-radius: 7px;
+    border: 1px solid darkblue;
+    margin-top: 75px;
+}
+

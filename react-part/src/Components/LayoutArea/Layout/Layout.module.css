@@ -1,0 +1,35 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-y: hidden; /* הסתרת גלילה אנכית אם יש */
+}
+
+.Layout {
+    height: 100vh;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+    grid-template-rows: 11% 84% 5%;
+}
+
+header, footer {
+    grid-column: span 2;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    height: 100%;
+}
+
+main{
+    overflow: auto;
+    display: grid;
+}
+
+.Layout, .Layout > *{
+    box-sizing: border-box;
+    border: 1px solid;
+}
