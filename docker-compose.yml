@@ -1,0 +1,139 @@
+# All containers needed: 
+services: 
+
+  # MySQL service: 
+  database-service:
+
+    # Image name to create from Dockerfile:
+    image: dorzee/vacations-database-image:1.0
+
+    # Where is the location of the Dockerfile:
+    build: ./Database
+
+    # Container name to create: 
+    container_name: vacations-database-container
+
+    # Named-vo~lume for MySQL folder:
+    volumes:
+      - vacations-volume:/var/lib/mysql
+
+    # Environment variables needed by MySQL for creating the database:
+    environment:
+      MYSQL_HOST: localhost # Where is the database host we're building --> Internally inside the container.
+      # MYSQL_USER: root # Inventing a database user.
+      MYSQL_PASSWORD: Aa123456 # Inventing a database password.
+      MYSQL_DATABASE: project # What is the database name.
+      MYSQL_ROOT_PASSWORD: Aa123456 # Additional passwrod needed internaly by MySQL
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      # MYSQL_PORT: 3307
+
+    # What to do if the container crashes: 
+    restart: unless-stopped # Restart when crashes, unless we stopped it.
+
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 160
+
+# ------------------------------------------------------------------------------------------
+  # Flask service (application):
+  flask-service:
+
+    # On which service we're depending on - for running and shutting-down order:
+    depends_on:
+      database-service:
+        condition: service_healthy
+
+    # Image name to create from Dockerfile:
+    image: dorzee/vacations-flask-image:1.0
+
+    # Where is the location of the Dockerfile:
+    build: ./Flask
+
+    # Container name to create: 
+    container_name: vacations-flask-container
+
+    # Environment variables needed by our backend project for connecting to MySQL located in another container!
+    environment:
+      MYSQL_HOST: database-service # Where is the database host we're connecting to relative to docker network. the service name is the computer name on the network.
+      MYSQL_USER: root # Inventing a database user.
+      MYSQL_PASSWORD: Aa123456 # Inventing a database password.
+      MYSQL_DATABASE: project # What is the database name.
+      # MYSQL_PORT: 3307
+
+    # What to do if the container crashes: 
+    restart: unless-stopped # Restart when crashes, unless we stopped it.
+
+    # Volume for persisting the images file:
+    volumes:
+      - images-volume:/app/src/static/images
+
+    # Port mapping (host:container)
+    ports:
+      - 8080:5000
+
+# ------------------------------------------------------------------------------------------
+
+  # Django service (application): 
+  django-service:
+
+    # On which service we're depending on - for running and shutting-down order:
+    depends_on:
+      database-service:
+        condition: service_healthy
+
+    # Image name to create from Dockerfile:
+    image: dorzee/vacations-django-image:1.0
+
+    # Where is the location of the Dockerfile:
+    build: ./Django
+
+    # Container name to create: 
+    container_name: vacations-django-container
+
+    # Environment variables needed by our backend project for connecting to MySQL located in another container!
+    environment:
+      MYSQL_HOST: database-service # Where is the database host we're connecting to relative to docker network. the service name is the computer name on the network.
+      MYSQL_USER: root # Inventing a database user.
+      MYSQL_PASSWORD: Aa123456 # Inventing a database password.
+      MYSQL_DATABASE: project # What is the database name.
+      # MYSQL_PORT: 3307
+
+    # What to do if the container crashes: 
+    restart: unless-stopped # Restart when crashes, unless we stopped it.
+
+    # Port mapping (host:container)
+    ports:
+      - 8000:8000
+
+# ------------------------------------------------------------------------------------------
+
+  # React service:
+  react-service: 
+
+    # On which service we're depending on - for running and shutting-down order:
+    depends_on:
+      - django-service
+
+    # Image name to create from Dockerfile:
+    image: dorzee/vacations-react-image:1.0
+
+    # Where is the location of the Dockerfile:
+    build: ./react-part
+
+    # Container name to create: 
+    container_name: vacations-react-container
+
+    # What to do if the container crashes: 
+    restart: unless-stopped # Restart when crashes, unless we stopped it.
+
+    # Port mapping (host:container)
+    ports:
+      - 80:3000
+
+# ------------------------------------------------------------------------------------------
+
+# List all the named-volumes: 
+volumes:
+  vacations-volume:
+  images-volume:
