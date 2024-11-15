@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Vacations Agency | Vacations
+{% endblock title %}
+
+{% block content %}
+
+<h1>Vacations</h1>
+<hr>
+
+{% for v in vacations %}
+<div class="vacation-card">
+    <img class="vacation-image" src="{{url_for('vacations_view.get_image', image_name=v.image if v.image else '---')}}">
+        <h2 class="country-name">
+            <img src="{{ url_for('static', filename='images/flags/' + v.country_name | lower + '.png') }}" class="flag-icon-card">
+            {{v.country_name}}
+        </h2>
+        {% if v.vacation_id in ids %}
+        <a class="red-btn" href="{{url_for('like_view.handle_like', vacation_id = v.vacation_id)}}"> ❤️ {{v.likes_count}} Like </a>
+        {% else %}
+        <a class="white-btn" href="{{url_for('like_view.handle_like', vacation_id = v.vacation_id)}}"> 🩶 {{v.likes_count}} Like </a>
+        {% endif %}
+    <div class="vacation-date">📅 {{v.start_date}} - {{v.end_date}}</div>
+    <div class="vacation-description">{{v.description}}</div>
+    <div class="vacation-price">{{v.price}} $</div>
+</div>
+{% endfor %}
+
+{% endblock content %}

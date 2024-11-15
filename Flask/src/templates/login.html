@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Vacations Agency | Login
+{% endblock title %}
+
+{% block content %}
+<h1>Login</h1>
+<hr>
+
+<form method="post" class="fancy_form">
+    <label>Email:</label>
+    <input type="email" value="{{credentials.email}}" name="email" class="form-control" required minlength="2" maxlength="100">
+    <br>
+    <label>Password:</label>
+    <input type="password" value="{{credentials.password}}" name="password" class="form-control" required minlength="4" maxlength="100">
+    <br>
+    <button class="btn btn-primary w-100">Log in</button>
+    <br><br>
+    <div class="account">
+        <div>Don't have an account?</div>
+        <a href="{{url_for('auth_view.register')}}">Register</a>
+    </div>    
+</form>
+{% endblock content %}

@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Vacations Agency | Home
+{% endblock title %}
+
+{% block content %}
+
+<h1>Welcome to Vacations Agency Website!</h1>
+<hr>
+<h2>About our company:</h2>
+<h4>
+    Discover your dream getaway with our vacation agency!<br>
+    We specialize in crafting personalized travel experiences, offering everything from serene beach retreats <br>
+    to adventurous mountain excursions. Our dedicated team ensures every detail is perfect, so you can relax <br>
+    and enjoy your trip. Let us turn your vacation dreams into reality.<br>
+    Explore, unwind, and create unforgettable memories.
+</h4>
+<img class="home-image"src="{{ url_for('static', filename='images/airplane.png') }}">
+<h6> Contact us:<br>
+📞 03-7843866 | 📧 vacations@agency.com
+</h6>
+{% endblock content %}

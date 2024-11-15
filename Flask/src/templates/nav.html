@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a href="{{ url_for('home_view.home') }}" class="image-link">
+            <img src="{{ url_for('static', filename='/images/favicon.ico') }}" width="80" height="40">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <span>&nbsp;</span>
+                <li>
+                    <a aria-current="page" href="{{ url_for('home_view.home') }}"{%  if active=='home' %} class='active' {% endif %}>Home</a>
+                </li>
+                <span>&nbsp;|&nbsp;</span>
+                {% if user["role_id"] == 2 %}
+                <li>
+                    <a href="{{ url_for('vacations_view.vacations') }}"{%  if active=='vacations' %} class='active' {% endif %}>Vacations</a>
+                </li>
+                {% endif %}
+                {% if user["role_id"] == 1 %}
+                <li>
+                    <a href="{{ url_for('vacations_view.insert') }}"{%  if active=='insert' %} class='active' {% endif %}>Add Vacation</a>
+                </li>
+                <span>&nbsp;|&nbsp;</span>
+                <li>
+                    <a href="{{ url_for('vacations_view.admin') }}"{%  if active=='admin' %} class='active' {% endif %}>Admin Page</a>
+                </li>
+                {% endif %}
+
+            </ul>
+            <div>
+                {% include "auth.html" %}
+            </div>
+        </div>
+    </div>
+</nav>

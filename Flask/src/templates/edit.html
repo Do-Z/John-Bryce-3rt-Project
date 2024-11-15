@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Vacations Agency | Edit Vacation
+{% endblock title %}
+
+
+{% block content %}
+<h2>Edit Vacation</h2>
+
+<form method="post" class="fancy_form" required enctype="multipart/form-data">
+    <input type="hidden" name="id" value="{{vacation.vacation_id}}">
+    <label for="country">Country:</label>
+    <div class="dropdown">
+        <button class= "btn btn-secondary dropdown-toggle" aria-expanded="false" type="button" data-bs-toggle="dropdown" id="countryDropdown"> Select a Country</button>
+        <ul class="dropdown-menu" aria-labelledby="countryDropdown">
+            {% for c in countries %}
+            <li>
+                <a href="#" class="dropdown-item" data-value="{{c[0]}}">
+                    <span class="flag-icon {{c[1]}}"></span>&nbsp;{{c[0]}}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+        <input type="hidden" name="country" id="country-input">
+    </div>
+    <br><br>
+    <label>Description:</label>
+    <input type="text" name="description" value="{{vacation.description}}" required class="form-control" minlength="3"> 
+
+    <label>Start Date:</label>
+    <input type="date" name="start_date" value="{{vacation.start_date}}" required class="form-control">
+
+    <label>End Date:</label>
+    <input type="date" name="end_date" value="{{vacation.end_date}}" required class="form-control">
+
+    <label>Price:</label>
+    <input type="number" name="price" value="{{vacation.price}}" required class="form-control" min="0" max="10000"> 
+
+    <label>Image:</label>
+    <img class="edit-image" src="{{url_for('vacations_view.get_image', image_name=(vacation.image if vacation.image else '---'))}}">
+    <input type="file" name="image" class="form-control"  accept="image/*">
+
+    <button class="btn btn-primary w-100">Save</button>
+    <br><br>
+    <a href="{{url_for('vacations_view.admin')}}" class="btn w-100 cancel-button">Cancel</a>
+</form>
+{% endblock content %}
+ 

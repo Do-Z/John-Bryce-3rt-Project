@@ -1,0 +1,229 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    text-align: center;
+    background-color: bisque !important;
+}
+
+.layout {
+    height: 100%;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 7% 89% 4%;
+}
+
+.layout,
+.layout>* {
+    border: 1px solid;
+}
+
+header, footer {
+    grid-column: span 6;
+    height: 100%;
+    display: flex;
+    align-items: stretch;
+}
+
+header > *, footer > * {
+    width: 100%;
+}
+
+.navbar{
+    background-color: bisque !important;
+}
+
+main {
+    grid-column: span 6;
+    padding: 20px;
+    overflow: auto;
+}
+
+.active{
+    color:lightseagreen !important;
+    font-weight: bold !important;
+    font-style: italic;
+}
+
+.home-image{
+    width: 620px;
+    height: 250px;
+}
+
+.fancy_form {
+    width: 400px;
+    margin: auto;
+    border: 1px solid;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px;
+    text-align: left;
+}
+
+.fancy_form > input{
+    margin-bottom: 20px;
+}
+
+.w-100{
+    cursor: pointer;
+}
+.account{
+    text-align: center;
+}
+
+.error{
+    background-color: red;
+    color: white;
+    border: 1px solid black;
+    font-size: large;
+    padding: 10px;
+    border-radius: 10px;
+    position: fixed;
+    top: 20px;
+    left: 43%;
+}
+
+.vacation-card{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 12px;
+    height: 390px;
+    width: 30.5%;
+    position: relative;
+    float: left;
+    background-color: white;
+    transition: box-shadow 0.2s ease-in-out, transform 0.22s ease-in-out;
+    margin-bottom: 23px;
+    margin-right: 20px;
+}
+
+.vacation-card:hover {
+    box-shadow: 3px 3px 3px gray; /* Shadow effect */
+    transform: scale(1.01);
+}
+
+.vacation-date{
+    border-bottom: 1px solid black;
+    padding-bottom: 6px;
+    background-color: lightblue;
+}
+
+.vacation-image{
+    height: 45%;
+    width: 100%;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    flex: 0 0 45%; /* makes all the images in the same size */
+    border-bottom: 1px solid black;
+}
+
+.cancel-button{
+    border: 1px solid grey !important;
+    background-color: white;
+}
+
+.country-name, .red-btn, .white-btn{
+    position: absolute;
+}
+
+.country-name{
+    margin: 10px;
+    background-color: white;
+    border-radius: 10px;
+    padding-left: 2px;
+    padding-right: 2px;
+    border: 1px solid grey;
+}
+
+.red-btn, .white-btn, .edit-button, .delete-button{
+    text-decoration: none;
+    right: 5px;
+    display: block;
+    border-radius: 15px;
+    width: 80px;
+    margin-top: 5px;
+    position: absolute;
+}
+
+.red-btn{
+    background-color: lightcoral;
+    color: red;
+    border: 1px solid red;
+}
+
+.white-btn{
+    background-color: lightgray;
+    color: gray;
+    border: 1px solid gray;
+}
+
+.vacation-description{
+    border-bottom: 1px solid black;
+    overflow: auto;
+    text-align: left;
+    height: 40%;
+    padding: 5px;
+}
+
+.vacation-price{
+    margin-right: 15px;
+    font-weight: bold;
+    font-size: large;
+    font-style: oblique;
+    color: green;
+}
+
+.edit-button, .delete-button{
+    background-color: lightgray;
+    border-radius: 10px;
+    border: 1px solid gray;
+}
+
+.delete-button{
+    margin-top: 40px;
+}
+
+a{
+    text-decoration: none;
+}
+
+.edit-image{
+    width: 360px;
+    height: 170px;
+}
+
+.flag-icon-card {
+    width: 25px;
+    height: 18px;
+    margin-bottom: 8px;
+}
+
+.flag-icon .dropdown-item {
+    margin-right: 10px;
+}
+
+.dropdown-toggle{
+    width: 360px !important;
+    text-align: left;
+    background-color: white !important;
+    color: black;
+    border: 1px solid lightgray;
+    position: relative;
+}
+
+.dropdown-toggle:optional {
+    color: black;
+}
+
+.dropdown-toggle::after{
+    position: absolute;
+    right: 1rem !important;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+}

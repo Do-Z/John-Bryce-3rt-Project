@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Vacations Agency | Add Vacation
+{% endblock title %}
+
+
+{% block content %}
+<h2>Add Vacation</h2>
+
+<form method="post" class="fancy_form" required enctype="multipart/form-data">
+    <label for="country">Country:</label>
+    <div class="dropdown">
+        <button class= "btn btn-secondary dropdown-toggle" aria-expanded="false" type="button" data-bs-toggle="dropdown" id="countryDropdown"> Select a Country</button>
+        <ul class="dropdown-menu" aria-labelledby="countryDropdown">
+            {% for c in countries %}
+            <li>
+                <a href="#" class="dropdown-item" data-value="{{c[0]}}">
+                    <span class="flag-icon {{c[1]}}"></span>&nbsp;{{c[0]}}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+        <input type="hidden" name="country" id="country-input">
+    </div>
+    <br>
+    <label>Description:</label>
+    <input type="text" name="description" required class="form-control" minlength="3"> 
+
+    <label>Start Date:</label>
+    <input type="date" name="start_date" required class="form-control">
+
+    <label>End Date:</label>
+    <input type="date" name="end_date" required class="form-control">
+
+    <label>Price:</label>
+    <input type="number" name="price" required class="form-control" min="0" max="10000"> 
+
+    <label>Image:</label>
+    <input type="file" name="image" accept="image/*" required class="form-control">
+
+    <button class="btn btn-primary w-100">Add</button>
+    <br><br>
+    <a href="{{url_for('vacations_view.admin')}}" class="btn w-100 cancel-button">Cancel</a>
+</form>
+{% endblock content %}
+ 
