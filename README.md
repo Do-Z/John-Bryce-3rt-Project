@@ -33,11 +33,11 @@ Open your browser and navigate to the specified ports:
  - Access the MySQL database via localhost:3306.
 
 **Project Structure:**
-  /react-part: Contains the React front-end code.
-  /Flask: Contains the Flask back-end API code.
-  /Django: Contains the Django back-end application.
-  /Database: MySQL database setup files.
-  docker-compose.yml: Docker configuration file for orchestrating services.
+ - /react-part: Contains the React front-end code.
+ - /Flask: Contains the Flask back-end API code.
+ - /Django: Contains the Django back-end application.
+ - /Database: MySQL database setup files.
+ - docker-compose.yml: Docker configuration file for orchestrating services.
   
 **Screenshots:**
 please go to the screenshots folder.
