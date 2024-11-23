@@ -44,6 +44,7 @@ please go to the screenshots folder.
 
 **Future Improvements:**
  - Enhance UI/UX design.
+ - More statics about the data.
 
 **License:**
 This project is licensed under the MIT License.
